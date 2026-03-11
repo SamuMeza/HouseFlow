@@ -1,0 +1,40 @@
+// src/types/houseFlow.ts
+
+export interface HouseFlowProject {
+  id: string;
+  originalUrl: string;
+  createdAt: string;
+  propertyInfo: {
+    title: string;
+    price: {
+      amount: number | null;
+      currency: string;
+      formatted: string;
+    };
+    location: string;
+    specs: {
+      bedrooms: number | null;
+      bathrooms: number | null;
+      area: string | null;
+      parking: number | null;
+    };
+    amenities: string[];
+  };
+  marketingKit: {
+    instagram: {
+      hook: string;
+      body: string;
+      tags: string[];
+    };
+    whatsapp: {
+      message: string;
+    };
+    videoScript: {
+      scenes: Array<{
+        step: number;
+        instruction: string;
+        dialogue: string;
+      }>;
+    };
+  };
+}

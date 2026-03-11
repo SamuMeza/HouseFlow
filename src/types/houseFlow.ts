@@ -40,7 +40,7 @@ export interface HouseFlowProject {
 }
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
+  label: React.ReactNode;
   variant?: 'primary' | 'secondary';
   className?: string;
 }

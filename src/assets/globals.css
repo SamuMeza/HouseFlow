@@ -1,0 +1,76 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Negro azulado profundo */
+    --bg-primary: #09090b;
+    /* Gris oscuro para cards */
+    --bg-secondary: #121214;
+    /* Azul vibrante (Botones/Acciones) */
+    --accent: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.35);
+    /* Blanco roto (mejor para la vista) */
+    --text-main: #fafafa;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    /* Gris para descripciones */
+    --text-muted: #a1a1aa;
+    /* Bordes sutiles */
+    --border: #27272a;
+    /* Fuentes */
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    background-image: radial-gradient(circle at top right,
+            #1e1b4b,
+            transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-family);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}

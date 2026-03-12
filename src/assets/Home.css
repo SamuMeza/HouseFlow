@@ -1,0 +1,36 @@
+/* src/assets/Home.css */
+
+.home-hero {
+    padding: 8rem 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 850;
+    letter-spacing: -0.05rem;
+}
+
+.hero-title span {
+    background: linear-gradient(to right, #fff, var(--accent));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 35rem;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+}
+
+.hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}

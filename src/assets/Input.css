@@ -1,5 +1,3 @@
-@import "./global.css";
-
 /* Input Base */
 .input-premium {
     width: 100%;
@@ -16,4 +14,10 @@
 .input-premium:focus {
     border-color: var(--accent);
     box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.input-premium:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: saturate(0.5);
 }

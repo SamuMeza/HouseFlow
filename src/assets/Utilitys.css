@@ -1,0 +1,28 @@
+/* --- UTILITY CLASSES --- */
+
+/* Márgenes */
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+/* Anchos */
+.w-full {
+    width: 100%;
+}
+
+/* Texto */
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-accent {
+    color: var(--accent);
+}

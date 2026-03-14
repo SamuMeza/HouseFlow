@@ -1,32 +1,17 @@
-import { Link, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
+import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 export const MainLayout = () => {
     return (
         <>
-            <header>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/dashboard">Dashboard</Link>
-                        </li>
-                        <li>
-                            <Link to="/history">History</Link>
-                        </li>
-                        <li>
-                            <Link to="/teleprompter">Teleprompter</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-            <main>
-                <Outlet />
-            </main>
-            <footer>
-                <p>HouseFlow</p>
-            </footer>
+            <div className="layout-root">
+                <Navbar />
+                <main className="main-content">
+                    <Outlet />
+                </main>
+                <Footer />
+            </div>
         </>
     )
 }

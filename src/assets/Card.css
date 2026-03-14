@@ -1,0 +1,17 @@
+/* src/assets/Card.css */
+
+.card-premium {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 1rem;
+    /* Esquinas redondeadas y modernas */
+    padding: 1.5rem;
+    /* Espacio interno para que el contenido respire */
+
+    /* Un ligero efecto de cristal para mantener la estética */
+    backdrop-filter: blur(8px);
+
+    /* Una sombra muy sutil para separarlo del fondo */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}

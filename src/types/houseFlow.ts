@@ -48,3 +48,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
+
+export interface CardProps {
+  children: React.ReactNode; //Esto quiere decir que puede recibir cualquier tipo de contenido dentro de la tarjeta
+  className?: string;
+}
+
+export interface BadgeProps {
+  label: string;
+  icon?: React.ReactNode; // El icono es opcional
+  variant?: 'solid' | 'outline' | 'ghost'; // Por si queremos varios estilos
+  className?: string;
+}

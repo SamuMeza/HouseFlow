@@ -1,0 +1,27 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-solid {
+    background-color: var(--border-subtle);
+    color: var(--text-main);
+}
+
+.badge-outline {
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+}
+
+.badge-icon {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    /* Todos los iconos de badges tendrán el color de acento */
+}

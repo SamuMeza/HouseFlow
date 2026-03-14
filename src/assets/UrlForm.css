@@ -17,3 +17,8 @@
 .url-form .input-premium {
     flex: 1;
 }
+
+.error-message {
+    color: #ef4444;
+    margin-top: 0.5em;
+}

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { fadeInUp, staggerContainer } from "../utils/animations"
 import UrlForm from "../components/molecules/UrlForm"
+import { Camera, MessageCircleMore, Video } from "lucide-react"
 
 const Home = () => {
     return (
@@ -25,9 +26,9 @@ const Home = () => {
                 </motion.div>
 
                 <motion.div className="hero-badges" variants={fadeInUp}>
-                    <span>Instagram</span>
-                    <span>WhatsApp</span>
-                    <span>Video Script</span>
+                    <span><Camera size={16} />Instagram</span>
+                    <span><MessageCircleMore size={16} />WhatsApp</span>
+                    <span><Video size={16} />Video Script</span>
                 </motion.div>
             </div>
         </motion.section>

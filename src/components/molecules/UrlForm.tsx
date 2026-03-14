@@ -1,10 +1,14 @@
 import { useState } from "react"
 import { isValidPropertyUrl } from "../../utils/validators";
+import { useNavigate } from "react-router-dom"
+import { AnimatePresence } from "framer-motion";
 import Button from "../atoms/Button"
 import Input from "../atoms/Input"
+import LoadingScreen from "../organisms/LoadingScreen";
 import { Send } from "lucide-react"
 
 const UrlForm = () => {
+    const navigate = useNavigate()
     const [url, setUrl] = useState("")
     const [error, setError] = useState("")
     const [isAnalyzing, setIsAnalyzing] = useState(false)
@@ -23,11 +27,16 @@ const UrlForm = () => {
 
         setTimeout(() => {
             setIsAnalyzing(false)
+            navigate("/dashboard")
         }, 2000);
     }
 
     return (
         <>
+            <AnimatePresence>
+                {isAnalyzing && <LoadingScreen />}
+            </AnimatePresence>
+
             <form onSubmit={handleSubmit} className="url-form">
                 <Input
                     type="url"

@@ -40,69 +40,69 @@ const TeleprompterDisplay = ({ text }: { text: string }) => {
     }, [config.isPlaying, config.speed]);
 
     // Reinicia el texto al principio y detiene el movimiento
-const handleReset = () => {
-    if (scrollRef.current) {
-        scrollRef.current.scrollTop = 0;
-    }
-    setConfig({ ...config, isPlaying: false });
-};
+    const handleReset = () => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = 0;
+        }
+        setConfig({ ...config, isPlaying: false });
+    };
 
-return (
-    <article className="teleprompter-logic">
-        <nav className="tele-toolbar mb-4" aria-label="Controles del teleprompter">
-            <fieldset className="control-fieldset">
-                <legend className="sr-only">Ajustes de Velocidad</legend>
-                <span className="text-muted">Velocidad</span>
-                <div className="stepper-control">
-                    <button
-                        className="icon-btn"
-                        onClick={() => setConfig({ ...config, speed: Math.max(1, config.speed - 1) })}
-                        aria-label="Disminuir velocidad"
-                    >
-                        <ChevronDown size={20} />
-                    </button>
-                    <output className="control-value">{config.speed}</output>
-                    <button
-                        className="icon-btn"
-                        onClick={() => setConfig({ ...config, speed: config.speed + 1 })}
-                        aria-label="Aumentar velocidad"
-                    >
-                        <ChevronUp size={20} />
-                    </button>
+    return (
+        <article className="teleprompter-logic">
+            <nav className="tele-toolbar mb-4" aria-label="Controles del teleprompter">
+                <fieldset className="control-fieldset">
+                    <legend className="sr-only">Ajustes de Velocidad</legend>
+                    <span className="text-muted">Velocidad</span>
+                    <div className="stepper-control">
+                        <button
+                            className="icon-btn"
+                            onClick={() => setConfig({ ...config, speed: Math.max(1, config.speed - 1) })}
+                            aria-label="Disminuir velocidad"
+                        >
+                            <ChevronDown size={20} />
+                        </button>
+                        <output className="control-value">{config.speed}</output>
+                        <button
+                            className="icon-btn"
+                            onClick={() => setConfig({ ...config, speed: config.speed + 1 })}
+                            aria-label="Aumentar velocidad"
+                        >
+                            <ChevronUp size={20} />
+                        </button>
+                    </div>
+                </fieldset>
+
+                <div className="action-group">
+                    <Button
+                        className="w-full"
+                        label={config.isPlaying ? <><Pause size={18} /> Detener</> : <><Play size={18} /> Iniciar</>}
+                        variant={config.isPlaying ? "secondary" : "primary"}
+                        onClick={() => setConfig({ ...config, isPlaying: !config.isPlaying })}
+                    />
+                    <Button
+                        label={<RotateCcw size={18} />}
+                        variant="secondary"
+                        className="btn-reset"
+                        onClick={handleReset}
+                        aria-label="Reiniciar texto"
+                    />
                 </div>
-            </fieldset>
-
-            <div className="action-group">
-                <Button
-                    className="w-full"
-                    label={config.isPlaying ? <><Pause size={18} /> Detener</> : <><Play size={18} /> Iniciar</>}
-                    variant={config.isPlaying ? "secondary" : "primary"}
-                    onClick={() => setConfig({ ...config, isPlaying: !config.isPlaying })}
-                />
-                <Button
-                    label={<RotateCcw size={18} />}
-                    variant="secondary"
-                    className="btn-reset"
-                    onClick={handleReset}
-                    aria-label="Reiniciar texto"
-                />
-            </div>
-        </nav>
-        <Card className="tele-view-container">
-            <div className="focus-overlay" aria-hidden="true"></div>
-            <section
-                ref={scrollRef}
-                className="tele-content-scroll"
-                style={{ fontSize: `${config.fontSize}rem` }}
-                aria-label="Texto para leer"
-            >
-                <div className="spacer-top" aria-hidden="true"></div>
-                <p className="tele-text">{text}</p>
-                <div className="spacer-bottom" aria-hidden="true"></div>
-            </section>
-        </Card>
-    </article>
-)
+            </nav>
+            <Card className="tele-view-container">
+                <div className="focus-overlay" aria-hidden="true"></div>
+                <section
+                    ref={scrollRef}
+                    className="tele-content-scroll"
+                    style={{ fontSize: `${config.fontSize}rem` }}
+                    aria-label="Texto para leer"
+                >
+                    <div className="spacer-top" aria-hidden="true"></div>
+                    <p className="tele-text">{text}</p>
+                    <div className="spacer-bottom" aria-hidden="true"></div>
+                </section>
+            </Card>
+        </article>
+    )
 }
 
 export default TeleprompterDisplay

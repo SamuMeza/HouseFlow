@@ -1,0 +1,192 @@
+/* src/assets/Dashboard.css */
+
+.dashboard-page {
+    padding: 3rem 0;
+}
+
+.dashboard-header {
+    margin-bottom: 2.5rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* La Cuadrícula de Cristal */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Móvil: Una sola columna */
+    gap: 2rem;
+    align-items: start;
+    /* Evita que las tarjetas se estiren a lo alto si no tienen contenido */
+}
+
+/* El truco de la altura para que la tarjeta de IA sea más grande */
+.ai-results-card {
+    min-height: 35rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.property-card {
+    padding: 0;
+    /* Quitamos el padding del Card para que la imagen toque los bordes */
+    overflow: hidden;
+    /* Para que las esquinas redondeadas recorten la imagen */
+}
+
+.property-img-container {
+    width: 100%;
+    height: 20rem;
+    overflow: hidden;
+}
+
+.property-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Esto hace que la imagen se vea perfecta sin deformarse */
+    transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-img-container img {
+    transform: scale(1.05);
+    /* Un elegante zoom al pasar el ratón */
+}
+
+.property-info {
+    padding: 1.5rem;
+}
+
+.property-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0.75rem 0 0.25rem 0;
+}
+
+.property-location {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.property-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.property-stats {
+    display: flex;
+    flex-wrap: wrap;
+    /* Para que en móviles bajen de línea si no caben */
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tabs-header {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab-btn:hover {
+    color: white;
+}
+
+.tab-btn.active {
+    color: var(--accent);
+}
+
+/* La rayita inferior de la pestaña activa */
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.6rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.ai-text-output {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    white-space: pre-wrap;
+    /* Respeta los saltos de línea del guion */
+    min-height: 15rem;
+}
+
+.tabs-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-scroll {
+    overflow-y: auto;
+    max-height: 450px;
+    /* Ajusta este valor según lo veas en tu pantalla */
+    padding-right: 0.5rem;
+    /* Espacio para que el scrollbar no pise el texto */
+    margin-bottom: 1rem;
+}
+
+/* OPCIONAL: Custom Scrollbar para que se vea Élite */
+.content-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 10px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* Responsive: A partir de pantallas medianas (Tablets/Desktop) */
+@media (min-width: 1024px) {
+    .dashboard-grid {
+        /* Divide en 12 columnas: 4 para la izquierda (1/3), 8 para la derecha (2/3) */
+        grid-template-columns: 4fr 8fr;
+    }
+}

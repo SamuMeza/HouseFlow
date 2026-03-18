@@ -60,3 +60,9 @@ export interface BadgeProps {
   variant?: 'solid' | 'outline' | 'ghost'; // Por si queremos varios estilos
   className?: string;
 }
+
+export interface TeleprompterConfig {
+  speed: number;  // Velocidad en palabras por minuto o píxeles por segundo
+  fontSize: number;
+  isPlaying: boolean;
+}

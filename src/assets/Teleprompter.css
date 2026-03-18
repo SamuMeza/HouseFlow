@@ -1,0 +1,117 @@
+/* src/assets/Teleprompter.css */
+
+.card-premium.tele-view-container {
+    height: 75vh;
+    border-radius: 0;
+    margin: 0 -1rem;
+    position: relative;
+    overflow: hidden;
+    /* Recorta el texto que sobra */
+    background-color: #050505;
+    padding: 0;
+}
+
+.tele-content-scroll {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0 1.5rem;
+    line-height: 1.4;
+    text-align: center;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+
+/* Ocultamos scrollbar para que parezca una pantalla de cine */
+.tele-content-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.focus-overlay {
+    position: absolute;
+    top: 40%;
+    /* La zona de lectura */
+    left: 0;
+    width: 100%;
+    height: 8rem;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(59, 130, 246, 0.15),
+            /* Tu color de acento con poca opacidad */
+            transparent);
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.tele-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-subtle);
+}
+
+.control-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.stepper-control {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 0.1rem;
+    border-radius: 0.5rem;
+}
+
+.control-value {
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.action-group {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    /* Botones a todo ancho en móvil */
+}
+
+.spacer-top,
+.spacer-bottom {
+    height: 35vh;
+    /* Para que el texto empiece y termine "naciendo" del centro */
+}
+
+@media (min-width: 768px) {
+    .tele-toolbar {
+        flex-direction: row;
+        padding: 1rem 1.5rem;
+    }
+
+    .card-premium.tele-view-container {
+        height: 65vh;
+        border-radius: 1rem;
+        margin: 0;
+    }
+
+    .tele-content-scroll {
+        padding: 0 4rem;
+        line-height: 1.6;
+    }
+
+    .action-group {
+        width: auto;
+    }
+}

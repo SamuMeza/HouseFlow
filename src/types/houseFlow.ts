@@ -4,6 +4,7 @@ export interface HouseFlowProject {
   id: string;
   originalUrl: string;
   createdAt: string;
+  mainImage: string;
   propertyInfo: {
     title: string;
     price: {

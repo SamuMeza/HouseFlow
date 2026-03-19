@@ -1,5 +1,7 @@
 /* src/assets/Navbar.css */
 
+/* Corregir problema de la barra de navegación para hacer commit */
+
 .navbar {
     position: sticky;
     top: 0;
@@ -13,6 +15,17 @@
     border-bottom: 1px solid var(--border-subtle);
     display: flex;
     align-items: center;
+}
+
+.main-nav {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .main-nav {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .navbar-content {
@@ -59,12 +72,6 @@
 
 .nav-logo svg {
     color: var(--accent);
-}
-
-.navbar-content nav {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
 }
 
 .nav-links a {

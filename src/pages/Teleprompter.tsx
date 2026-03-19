@@ -1,7 +1,20 @@
+import { useEffect } from "react";
 import TeleprompterDisplay from "../components/organisms/TeleprompterDisplay";
+import type { HouseFlowProject } from "../types/houseFlow";
+import { useNavigate } from "react-router-dom";
 
 const Teleprompter = () => {
-    const guionEjemplo = "¡Hola a todos! Bienvenidos a esta espectacular villa en Marbella. Como pueden ver, el salón es amplísimo y tiene unas vistas al mar que quitan el aliento. Esta propiedad cuenta con 4 habitaciones, acabados de mármol y una piscina infinita. Es la oportunidad perfecta para invertir en la Costa del Sol. ¡Acompáñenme a ver el resto!"
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem("currentProject")) navigate("/");
+    }, [navigate]);
+
+    const savedData = localStorage.getItem("currentProject");
+    const project: HouseFlowProject | null = savedData ? JSON.parse(savedData) : null;
+    const script = project?.marketingKit?.videoScript.scenes.map(scene => scene.dialogue).join("\n\n");
+
+
     return (
         <section className="teleprompter-page">
             <div className="container">
@@ -9,7 +22,7 @@ const Teleprompter = () => {
                     <h1>Teleprompter</h1>
                     <p>Lee tu guion profesionalmente mientras grabas.</p>
                 </header>
-                <TeleprompterDisplay text={guionEjemplo} />
+                <TeleprompterDisplay text={script || "No hay guion disponible"} />
             </div>
         </section>
     )

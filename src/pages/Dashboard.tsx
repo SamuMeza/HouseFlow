@@ -1,23 +1,62 @@
 import Card from "../components/atoms/Card";
 import Badge from "../components/atoms/Badge";
 import Button from "../components/atoms/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Bed, Bath, Maximize2, MapPin, Video, MessageCircle, Camera } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "../utils/animations"
+import type { HouseFlowProject } from "../types/houseFlow";
 
 const Dashboard = () => {
-    const [activeTab, setActiveTab] = useState<"instagram" | "whatsapp" | "tiktok">("instagram");
+    const [project, setProject] = useState<HouseFlowProject | null>(null);
+    const [activeTab, setActiveTab] = useState<"instagram" | "whatsapp" | "videoScript">("instagram");
     const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+        const savedData = localStorage.getItem("currentProject");
+        if (savedData) {
+            setProject(JSON.parse(savedData) as HouseFlowProject);
+        }
+    }, []);
+
+    const getMarketingText = () => {
+        if (!project) return;
+
+        const kit = project.marketingKit
+
+        switch (activeTab) {
+            case "instagram":
+                return `${kit.instagram.hook}\n\n${kit.instagram.body}\n\n${kit.instagram.tags.join(" ")}`;
+            case "whatsapp":
+                return kit.whatsapp.message;
+            case "videoScript":
+                return kit.videoScript.scenes.map(scene => `${scene.step}\n\n${scene.instruction}\nDiálogo: ${scene.dialogue}`).join("\n\n");
+            default:
+                return "";
+        }
+    }
 
     const handleCopy = async () => {
         try {
-            await navigator.clipboard.writeText(AI_RESULTS[activeTab].content);
+            await navigator.clipboard.writeText(getMarketingText() || "");
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
         } catch (error) {
             console.error("Error al copiar:", error);
         }
+    }
+
+    if (!project) {
+        return (
+            <section className="dashboard-page">
+                <div className="container">
+                    <header className="dashboard-header">
+                        <h1>Tu proyecto Generado</h1>
+                        <p>Aquí tienes todo el material de marketing para tu propiedad.</p>
+                    </header>
+                </div>
+            </section>
+        )
     }
 
     return (
@@ -31,7 +70,7 @@ const Dashboard = () => {
                     <aside className="dashboard-sidebar">
                         <Card className="property-card">
                             <div className="property-img-container">
-                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="Propiedad" />
+                                <img src={project.mainImage} alt="Propiedad" />
                             </div>
                             <div className="property-info">
                                 <Badge label="En Venta" variant="solid" className="mb-2" />
@@ -43,7 +82,7 @@ const Dashboard = () => {
                                     <Badge icon={<Bath size={14} />} label="3 Baños" variant="outline" />
                                     <Badge icon={<Maximize2 size={14} />} label="200 m²" variant="outline" className="w-full mt-4" />
                                 </div>
-                                <Button label="Ver Origen" variant="secondary" onClick={() => { window.open("#", "_blank") }} />
+                                <Button label="Ver Origen" variant="secondary" onClick={() => { window.open(project.originalUrl, "_blank") }} />
                             </div>
                         </Card>
                     </aside>
@@ -58,7 +97,7 @@ const Dashboard = () => {
                                     <MessageCircle size={18} />
                                     WhatsApp
                                 </button>
-                                <button className={`tab-btn ${activeTab === "tiktok" ? "active" : ""}`} onClick={() => setActiveTab("tiktok")}>
+                                <button className={`tab-btn ${activeTab === "videoScript" ? "active" : ""}`} onClick={() => setActiveTab("videoScript")}>
                                     <Video size={18} />
                                     VideoScript
                                 </button>
@@ -70,8 +109,8 @@ const Dashboard = () => {
                                     animate="animate"
                                     variants={fadeInUp}
                                 >
-                                    <h3 className="mb-2 text-accent">{AI_RESULTS[activeTab].title}</h3>
-                                    <p className="ai-text-output">{AI_RESULTS[activeTab].content}</p>
+                                    <h3 className="mb-2 text-accent">Contenido para {activeTab}</h3>
+                                    <p className="ai-text-output">{getMarketingText()}</p>
                                 </motion.div>
 
                                 <footer className="tab-footer mt-4">
@@ -85,21 +124,5 @@ const Dashboard = () => {
         </section>
     )
 }
-
-const AI_RESULTS = {
-    instagram: {
-        title: "Copy para Instagram",
-        content: "✨ ¡Increíble oportunidad en Marbella! Esta villa moderna redefine el lujo costa. Con 4 amplias habitaciones y vistas al mar, es el hogar de tus sueños. #Inmobiliaria #Lujo #MarbellaVillas",
-    },
-    tiktok: {
-        title: "Guion para Video",
-        content: "[Escena 1: Fachada con música movida] ¿Buscas vivir frente al mar? Te presento la Villa Z. [Escena 2: Interior] Espacios abiertos, luz natural y acabados de mármol...",
-    },
-    whatsapp: {
-        title: "Mensaje de WhatsApp",
-        content: "Hola! Te comparto la ficha de esta propiedad en Marbella: Villa Moderna, 4 hab, 1.25M €. Avísame si quieres agendar una visita.",
-    }
-};
-
 
 export default Dashboard

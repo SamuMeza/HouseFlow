@@ -1,0 +1,128 @@
+/* src/assets/ThanksModal.css */
+
+.modal-overlay {
+    position: fixed;
+    /* Forzamos que ignore al padre usando coordenadas absolutas si es necesario */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Mucho más alto */
+}
+
+.modal-content {
+    background: #1a1a1c;
+    /* Un tono oscuro sólido para que se lea bien */
+    padding: 2.5rem;
+    border-radius: 24px;
+    max-width: 450px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    /* Animación de entrada suave */
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* --- Estilos para Binance --- */
+
+.binance-id-card {
+    background: linear-gradient(135deg, #f3ba2f 0%, #d9a01b 100%);
+    color: #000;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 20px rgba(243, 186, 47, 0.2);
+}
+
+.binance-id-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(243, 186, 47, 0.3);
+}
+
+.pay-id-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.7;
+    letter-spacing: 0.05rem;
+}
+
+.pay-id-number {
+    font-size: 1.75rem;
+    font-weight: 900;
+    font-family: 'Inter', monospace;
+    letter-spacing: 0.1rem;
+}
+
+.qr-container {
+    background: white;
+    padding: 1rem;
+    display: inline-block;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.qr-img {
+    display: block;
+    width: 150px;
+    height: 150px;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
+
+/* 📱 MEDIA QUERIES PARA MÓVIL */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        /* Botones uno encima de otro en móvil */
+    }
+
+    .modal-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .modal-content p {
+        font-size: 0.9rem;
+    }
+}
